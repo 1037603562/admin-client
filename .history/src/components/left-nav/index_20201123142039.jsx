@@ -40,7 +40,7 @@ class leftNav extends React.Component{
                     </Menu.Item>
         }
 
-        const cItem = item.children.find(cItem=>path.indexOf(cItem.key)===0)
+        const cItem = item.children.find((cItem=>path.indexOf(cItem.key)===0)
         if(cItem){
            this.openkey=item.key
         }

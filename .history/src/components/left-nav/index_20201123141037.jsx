@@ -40,7 +40,7 @@ class leftNav extends React.Component{
                     </Menu.Item>
         }
 
-        const cItem = item.children.find(cItem=>path.indexOf(cItem.key)===0)
+        const cItem = item.children.find(cItem=>cItem.key===path)
         if(cItem){
            this.openkey=item.key
         }
@@ -60,8 +60,8 @@ componentWillMount(){
        
 
 //获取当前请求的路由路径
-let selectKey = this.props.location.pathname
-       if(selectKey.indexOf('/product') ===0){
+const selectKey = this.props.location.pathname
+       if(selectKey.indexof('/product') ===0){
            selectKey = '/product'
        }
 

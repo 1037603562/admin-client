@@ -2,8 +2,6 @@ import React from 'react'
 import {
     PlusOutlined,
   } from '@ant-design/icons'
-
-import _ from 'lodash'//jie节流函数
 //引入接口请求函数
 import {reqProducts,reqSearchProducts,reqUpdateStatus} from '../../api'
 import { Card,Select,Input,Button,Table, Switch, message} from 'antd'
@@ -83,7 +81,7 @@ export default class Product extends React.Component{
     }
 
     //上架下架
-    updataStatus=_.throttle(async(productId,status)=>{
+    updataStatus=async(productId,status)=>{
         //获取状态值
          status= status===1?2:1
         const result = await reqUpdateStatus(productId,status)
@@ -91,7 +89,7 @@ export default class Product extends React.Component{
             message.success('更新商品状态成功！')
             this.getProducts(this.pageNum)
         }
-    },2000)
+    }
 
 
 
@@ -100,7 +98,7 @@ export default class Product extends React.Component{
         this.pageNum = pageNum
         const { searchName,searchType} =this.state
         let result
-        if(!this.isSearch){//rugu如果是一般分页
+        if(!searchName){//rugu如果是一般分页
                 //发请求获取数据
              result = await reqProducts(pageNum,PAGE_SIZE)
         }else{
@@ -143,17 +141,11 @@ export default class Product extends React.Component{
                     onChange={(e)=>this.setState({searchName:e.target.value})}>
 
                     </Input>
-                <Button type="primary" onClick={()=>{
-                    this.isSearch = true//保存搜索的标记
-                    this.getProducts(1)
-                    }}>搜索</Button>
+                <Button type="primary" onClick={()=>{this.getProducts(1)}}>搜索</Button>
             </span>
         )
         const extra = (
-            <Button type="primary" onClick ={()=>{
-                memoryUtils.product = {}
-                this.props.history.push('/product/addupdate')
-            }}>
+            <Button type="primary" onClick ={()=>this.props.history.push('/product/addupdate')}>
                 <PlusOutlined />
                 添加商品
             </Button>

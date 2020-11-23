@@ -3,7 +3,7 @@ import {
     PlusOutlined,
   } from '@ant-design/icons'
 
-import _ from 'lodash'//jie节流函数
+//import throttle from 'lodash.throttle'//jie节流函数
 //引入接口请求函数
 import {reqProducts,reqSearchProducts,reqUpdateStatus} from '../../api'
 import { Card,Select,Input,Button,Table, Switch, message} from 'antd'
@@ -83,7 +83,7 @@ export default class Product extends React.Component{
     }
 
     //上架下架
-    updataStatus=_.throttle(async(productId,status)=>{
+    updataStatus=throttle(async(productId,status)=>{
         //获取状态值
          status= status===1?2:1
         const result = await reqUpdateStatus(productId,status)
