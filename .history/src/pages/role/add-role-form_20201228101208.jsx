@@ -1,0 +1,39 @@
+import React from 'react'
+import { Form, Input, Button,message} from 'antd';
+
+
+export default class AddRoleForm extends React.Component{
+    formRef = React.createRef();//1.
+    
+
+      onFinish= (val)=>{
+console.log(val)
+      }
+     
+         
+    render(){
+       return <Form
+                name="basic"
+                onFinish={this.onFinish}
+                ref={this.formRef} >
+                <Form.Item
+                    label="角色名称"
+                    name="roleName"
+                    rules={[{ required: true, message: '角色名称必填!' }]}
+                >
+                    <Input />
+                </Form.Item>
+           
+       </Form>
+    }
+
+
+
+}
+/*
+用户名/密码的的合法性要求
+  1). 必须输入
+  2). 必须大于等于4位
+  3). 必须小于等于12位
+  4). 必须是英文、数字或下划线组成
+ */
