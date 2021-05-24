@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {increment,decrement} from './redux/actions'
+
 
 /*
 应用根组件
@@ -14,32 +14,39 @@ class App extends Component {
 
   increment=()=>{
     const count = this.refs.selectRef.value*1
-    this.props.store.dispatch(increment(count))
+    this.setState({
+      count:this.state.count+count
+    })
   }
 
   decrement=()=>{
     const count = this.refs.selectRef.value*1
-    this.props.store.dispatch(decrement(count))
+    this.setState({
+      count:this.state.count-count
+    })
   }
 
   odd=()=>{
-    const count = this.refs.selectRef.value*1
-    //const count=this.props.store.getState()
+    const num = this.refs.selectRef.value*1
+    const count=this.state.count
     if(count%2===1){
-      this.props.store.dispatch(increment(count))
+      this.setState({
+        count:count+num
+      })
     }
   }
   async=()=>{
     const count = this.refs.selectRef.value*1
     setTimeout(() => {
-      this.props.store.dispatch(increment(count))
+      this.setState({
+        count:this.state.count+count
+      })
     }, 1000);
   }
   render() {
-    const count = this.props.store.getState()
     return (
       <div>
-        <p>cilck{count}times</p>
+        <p>cilck{this.state.count}times</p>
         <select ref="selectRef">
           <option value="1">1</option>
           <option value="2">2</option>

@@ -23,8 +23,8 @@ class App extends Component {
   }
 
   odd=()=>{
-    const count = this.refs.selectRef.value*1
-    //const count=this.props.store.getState()
+    //const num = this.refs.selectRef.value*1
+    const count=this.props.store.getState()
     if(count%2===1){
       this.props.store.dispatch(increment(count))
     }
