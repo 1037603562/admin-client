@@ -22,9 +22,11 @@
     "react-app-rewired": "^2.1.6",
     "react-dom": "^16.13.1",
     "react-draft-wysiwyg": "^1.14.5",
+    "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
-    "redux": "^4.1.0"
+    "redux": "^4.1.0",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "set BROWSER=chrome&&react-app-rewired start",
@@ -49,5 +51,8 @@
       "ie > 9"
     ]
   },
-  "proxy": "http://localhost:5000"
+  "proxy": "http://localhost:5000",
+  "devDependencies": {
+    "redux-devtools-extension": "^2.13.9"
+  }
 }

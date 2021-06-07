@@ -1,42 +1,51 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import {increment,decrement} from './redux/actions'
+//import {increment,decrement} from './redux/actions'
 
 /*
 应用根组件
+UI组件：负责显示（初始显示和更新显示）
+在编码上没有使用到任何reudx相关的语法
  */
-class App extends Component {
+class Counter extends Component {
  
   //声明一下，声明不是必须写的 只是写了更加规范
     static propTypes = {
-      store:PropTypes.object.isRequired
+     // store:PropTypes.object.isRequired
+     count:PropTypes.number.isRequired,
+     increment:PropTypes.func.isRequired,
+     decrement:PropTypes.func.isRequired,
+     incrementDsync:PropTypes.func.isRequired
     }
 
   increment=()=>{
     const count = this.refs.selectRef.value*1
-    this.props.store.dispatch(increment(count))
+    //this.props.store.dispatch(increment(count))
+    this.props.increment(count)
   }
 
   decrement=()=>{
     const count = this.refs.selectRef.value*1
-    this.props.store.dispatch(decrement(count))
+    //this.props.store.dispatch(decrement(count))
+    this.props.decrement(count)
   }
 
   odd=()=>{
     const count = this.refs.selectRef.value*1
-    //const count=this.props.store.getState()
-    if(count%2===1){
-      this.props.store.dispatch(increment(count))
+    const counts=this.props.count
+    if(counts%2===1){
+      this.props.increment(count)
     }
   }
   async=()=>{
     const count = this.refs.selectRef.value*1
-    setTimeout(() => {
-      this.props.store.dispatch(increment(count))
-    }, 1000);
+    this.props.incrementDsync(count)
+    // setTimeout(() => {
+    //   this.props.increment(count)
+    // }, 1000);
   }
   render() {
-    const count = this.props.store.getState()
+    const count = this.props.count
     return (
       <div>
         <p>cilck{count}times</p>
@@ -54,4 +63,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default Counter

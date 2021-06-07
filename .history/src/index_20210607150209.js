@@ -8,7 +8,7 @@ import  "react-app-polyfill/stable";
 
 import { Provider} from 'react-redux'
 
-import App from './containers/App'
+import App from './App'
 
 import store from './redux/store'
 ReactDom.render((

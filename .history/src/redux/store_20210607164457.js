@@ -5,8 +5,6 @@ import { createStore,applyMiddleware } from "redux";
 import thunk from 'redux-thunk'
 
 import reducer from "./reducer";
-
-import {composeWithDevTools} from 'redux-devtools-extension'
 //根据指定的reducer函数 产生一个store对象
-const store = createStore(reducer,composeWithDevTools(applyMiddleware(thunk)))
+const store = createStore(reducer,applyMiddleware(thunk))
 export default store
